@@ -18,6 +18,9 @@ export default function MovieCard(props) {
             <Typography>
                 {props.title}
             </Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              {props.vote_average}
+            </Typography>
         </CardContent>
         
     </Card>

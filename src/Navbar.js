@@ -8,7 +8,12 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import { useState, useEffect } from 'react';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -55,10 +60,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Navbar(props) {
 
   const [searchText, setSearchText] = useState([]);
-  
+  const [filterByRatings, setFilterByRatings] = useState([]);
+
   useEffect(()=> {
     props.searchedText(searchText)
   }, [searchText])
+
+  useEffect(()=> {
+    props.filterByRatings(filterByRatings)
+  }, [filterByRatings])
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -91,6 +101,24 @@ export default function Navbar(props) {
               onChange={event => {setSearchText(event.target.value)}}
             />
           </Search>
+
+          <FormControl sx={{ m: 1, minWidth: 80 }}>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              value={filterByRatings}
+              onChange={event => {setFilterByRatings(event.target.value)}}
+              autoWidth
+              label="Filter by"
+            >
+              <MenuItem value={0}>
+                <em>-filter</em>
+              </MenuItem>
+              <MenuItem value={1}>IMDB rating</MenuItem>
+            </Select>
+          </FormControl>
+
+
         </Toolbar>
       </AppBar>
     </Box>

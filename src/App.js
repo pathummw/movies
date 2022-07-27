@@ -11,35 +11,42 @@ function App() {
 
   useEffect (() => {
 
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
-        .then((response) => response.json())
-        .then((data) => setPopularFilms(data.results))
-        .catch((err) => {
-            console.log(err.message);
-        });
+      fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
+          .then((response) => response.json())
+          .then((data) => {
+            setPopularFilms(data.results);
+            setFilteredFilms(data.results);
+          })
+          .catch((err) => {
+              console.log(err.message);
+          });
+          
+  }, [])
 
-        console.log(popularFilms)
-
-        console.log(searchText)
-        setFilteredFilms(popularFilms)
- }, [])
 
   const searchedText = (text) => {
-    console.log("From App: "+ text)
-    setSearchText(text)
+    setSearchText(text);
     if(text != ''){
       const result = popularFilms.filter(el => el.title.toLowerCase().indexOf(text.toLowerCase()) !== -1);
-      setFilteredFilms(result)
-      console.log(result)
+      setFilteredFilms(result);
     } else {
-      setFilteredFilms(popularFilms)
+      setFilteredFilms(popularFilms);
     }
-    
-    
   }
+
+  const filterByRatings = (e) => {  
+    if(e > 0) {
+      const cloneOfPopularFilms = [...popularFilms];
+      const result = cloneOfPopularFilms.sort((a,b) => a.vote_average - b.vote_average);
+      setFilteredFilms(result);
+    } else {
+      setFilteredFilms(popularFilms);
+    }
+  }
+
   return (
     <div>
-      <Navbar searchedText={searchedText} />
+      <Navbar searchedText={searchedText} filterByRatings={filterByRatings} />
       <Home filteredFilms={filteredFilms} />
     </div>
   );
