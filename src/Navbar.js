@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState, useEffect } from 'react';
+import {Link} from "react-router-dom";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -83,14 +84,18 @@ export default function Navbar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            Movies
-          </Typography>
+          
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            >
+              <Link to={'/'}>
+                Movies
+              </Link>
+            </Typography>
+          
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

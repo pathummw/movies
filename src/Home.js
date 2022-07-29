@@ -17,7 +17,7 @@ export default function Home(props) {
                 props.filteredFilms && 
                 props.filteredFilms.map(movie => (
                     <Grid item key={movie.id} >
-                        <MovieCard title={movie.title} poster={process.env.REACT_APP_POSTER_PATH + movie.poster_path} vote_average={movie.vote_average}/>
+                        <MovieCard id={movie.id} title={movie.title} poster={process.env.REACT_APP_POSTER_PATH + movie.poster_path} vote_average={movie.vote_average}/>
                     </Grid>
                 ))
             }

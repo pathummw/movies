@@ -1,13 +1,21 @@
 import Card from '@mui/material/Card';
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import CardMedia from '@mui/material/CardMedia';
 import { CardContent, Typography } from '@mui/material';
+import {useNavigate} from 'react-router-dom';
 
 export default function MovieCard(props) {
+
+  const navigate = useNavigate();
+  const handleCardClick = useCallback(() => navigate(`/movie/${props.id}`, {replace: true}), [navigate]);
+
+  /* const handleCardClick = () =>{
+    console.log("CLICKED: ", props.id)
+  } */
     
   return (
-    <Card >
+    <Card onClick={handleCardClick}>
         <CardMedia
             component="img"
             image={props.poster}

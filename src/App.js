@@ -2,6 +2,8 @@ import Home from './Home';
 import Navbar from './Navbar';
 import '../src/styles.css'
 import { useState, useEffect} from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import MovieInfo from './MovieInfo';
 
 function App() {
 
@@ -45,10 +47,14 @@ function App() {
   }
 
   return (
-    <div>
+    <Router>
       <Navbar searchedText={searchedText} filterByRatings={filterByRatings} />
-      <Home filteredFilms={filteredFilms} />
-    </div>
+
+      <Routes>
+        <Route path='/' exact element={<Home filteredFilms={filteredFilms} />}/>
+        <Route path='/movie/:id'  element={<MovieInfo />} />
+      </Routes>
+    </Router>
   );
 }
 
