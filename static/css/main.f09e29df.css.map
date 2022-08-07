@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.f09e29df.css","mappings":"AAAA,EAGI,qBAAsB,CAFtB,QAAS,CACT,SAEJ,CAEA,YAEI,WAAY,CADZ,SAEJ","sources":["styles.css"],"sourcesContent":["* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.imageMovie {\r\n    width: 80%;\r\n    height: auto;\r\n}\r\n"],"names":[],"sourceRoot":""}
