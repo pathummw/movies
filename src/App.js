@@ -1,9 +1,10 @@
 import Home from './Home';
 import Navbar from './Navbar';
 import '../src/styles.css'
-import { useState, useEffect} from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import MovieInfo from './MovieInfo';
+
 
 function App() {
 
@@ -24,6 +25,9 @@ function App() {
           });
           
   }, [])
+
+  
+  
 
 
   const searchedText = (text) => {
