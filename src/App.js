@@ -2,7 +2,7 @@ import Home from './Home';
 import Navbar from './Navbar';
 import '../src/styles.css'
 import { useState, useEffect } from 'react';
-import {BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter , Route, Routes } from 'react-router-dom'
 import MovieInfo from './MovieInfo';
 
 
@@ -51,14 +51,15 @@ function App() {
   }
 
   return (
-    <Router>
+    <BrowserRouter>
       <Navbar searchedText={searchedText} filterByRatings={filterByRatings} />
 
       <Routes>
         <Route path='/' exact element={<Home filteredFilms={filteredFilms} />}/>
         <Route path='/movie/:id'  element={<MovieInfo />} />
+
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
