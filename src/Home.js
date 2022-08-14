@@ -5,7 +5,8 @@ import { setGlobalState } from './state';
 
 export default function Home(props) {
 
-  setGlobalState('hideSearchBar', false)
+  setGlobalState('hideSearchBar', false);
+  setGlobalState('openModal', false);
 
   return (
     <Box sx={{ display: 'flex',

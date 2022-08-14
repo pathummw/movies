@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useGlobalState } from './state'
 
 export default function YoutubeEmbed({ embedId }) {
+    const [openModal] = useGlobalState('openModal');
+
   return (
     <div className="video-responsive">
         <iframe
@@ -12,6 +15,7 @@ export default function YoutubeEmbed({ embedId }) {
             allowFullScreen
             title="Embedded youtube"
         />
+
   </div>
   )
 }

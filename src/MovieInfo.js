@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from "react-router-dom";
 import './styles.css'
-import YoutubeEmbed from './YoutubeEmbed';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -10,6 +9,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { setGlobalState } from './state';
+import BasicModal from './BasicModal';
+
 
 export default function MovieInfo() {
   let params = useParams();
@@ -17,7 +18,9 @@ export default function MovieInfo() {
   const [embedId, setEmbedId] = useState([]);
 
   const testRef = useRef(null);
-  const scrollToElement = () => testRef.current.scrollIntoView();
+  const onClickWatchTrailer = () => {
+    setGlobalState('openModal', true);
+  };
 
   setGlobalState('hideSearchBar', true)
 
@@ -34,15 +37,12 @@ export default function MovieInfo() {
         } else {
           return;
         }
-        console.log(videoObj.key)
       })
       .catch((err) => {
         console.log(err.message);
       });
 
   }, [])
-
-  console.log(movieInfo)
 
   return (
     <div>
@@ -74,7 +74,7 @@ export default function MovieInfo() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" onClick={scrollToElement}>Watch Trailer</Button>
+            <Button size="small" onClick={onClickWatchTrailer}>Watch Trailer</Button>
           </CardActions>
 
         </Card>
@@ -94,10 +94,9 @@ export default function MovieInfo() {
         }}
         ref={testRef}
       >
-        <Card sx={{ maxWidth: "60vw" }}>
-          <YoutubeEmbed embedId={embedId} />
-        </Card>
       </Box>
+
+      <BasicModal embedId={embedId}/>
 
     </div>
 
